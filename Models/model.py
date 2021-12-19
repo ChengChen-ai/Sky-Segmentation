@@ -13,11 +13,11 @@ from util.image_pool import ImagePool
 
 import torch.nn.functional as F
 
-class OTSUNet(nn.Module):
+class SSMNet(nn.Module):
     def __init__(
         self, params, use_gpu
     ):
-        super(OTSUNet,self).__init__()
+        super(SSMNet,self).__init__()
 
         self.params = params
         self.save_path = params.save_path
