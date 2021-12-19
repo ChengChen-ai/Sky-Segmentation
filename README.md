@@ -18,7 +18,7 @@ key：CcSs
 ## Train
 The downloaded training data is placed in the following file  
 >data
->>images
+>>images  
 >>labels
 
 ## Test
