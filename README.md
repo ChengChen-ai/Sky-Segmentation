@@ -27,7 +27,9 @@ The downloaded training data is placed in the following file
 The testing data is placed in the following file  
 >data
 >>test
->>>images
+>>>images  
+
+    python ./test.py
 
 ## Acknowledgments
 Code is inspired by Retinex and CycleGAN.
