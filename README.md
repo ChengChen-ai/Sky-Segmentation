@@ -22,6 +22,10 @@ The downloaded training data is placed in the following file
 >>labels
 
 ## Test
+The test data is placed in the following file  
+>data
+>>test
+>>>images
 
 ## Acknowledgments
 Code is inspired by Retinex and CycleGAN.
