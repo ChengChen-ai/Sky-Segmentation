@@ -19,6 +19,7 @@ The downloaded training data is placed in the following file
 >data
 >>images  
 >>labels  
+
     python ./train.py
 
 
