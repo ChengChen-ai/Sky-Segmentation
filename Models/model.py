@@ -7,9 +7,7 @@ from collections import OrderedDict
 from torch.autograd import Variable
 from Models.enhance import Enhance_Net,Decom_Net
 from Models.generator import Generator
-from Models.attention import Attention
 from Models.vgg16 import Vgg16
-from Models.fog_Feature import Fog_Feature
 from Models.Discriminator import Discriminator
 from util.image_pool import ImagePool
 
@@ -37,14 +35,11 @@ class OTSUNet(nn.Module):
         self.result_map = Variable(torch.Tensor(*self.shape_A))
         self.image_label = Variable(torch.Tensor(*self.shape_B))
 
-
-
         ##models
         self.netE = Enhance_Net("netE")
         self.netD = Decom_Net("netD", params.nums_layer)
         self.netG = Generator('netG', params.input_nc, params.num_filter, params.output_nc, params.nums_layer)
         self.netVgg16 = Vgg16("netVgg", False)
-        self.netFog_F = Fog_Feature('netFog_F')
         self.netD_sky = Discriminator(name='divsky', input_dim=params.input_nc, num_filter=params.num_filter,
                                       output_dim=1)
 
@@ -64,7 +59,6 @@ class OTSUNet(nn.Module):
             self.netG_optim = optim.Adam(self.netG.parameters(), lr=params.lr, betas=(params.beta1, 0.999))
             self.netD_sky_optim = optim.Adam(self.netD_sky.parameters(), lr=params.lr,
                                                  betas=(params.beta1, 0.999))
-
 
         if params.cuda:
             if use_gpu:
@@ -96,8 +90,6 @@ class OTSUNet(nn.Module):
         self.real_A = Variable(self.input_A)
         self.real_B = Variable(self.input_B)
 
-
-
     def test_model(self):
         """test model
         """
@@ -113,10 +105,8 @@ class OTSUNet(nn.Module):
         self.feature_map = R_a
         out3 = self.netG(self.feature_map)
 
-
         self.result_map = out3 + self.I_a_hat
         self.result_map = torch.where(self.result_map>=torch.max(self.result_map)*0.15,torch.ones_like(self.result_map),torch.zeros_like(self.result_map))
-
 
     def backward_basic_D(self, netD, real, fake, real_label, fake_label):
 
@@ -150,7 +140,6 @@ class OTSUNet(nn.Module):
         self.I_a = torch.cat([I_a, I_a, I_a], 1).detach()
         self.I_b = torch.cat([I_b, I_b, I_b], 1).detach()
 
-        ###DDDDDD
         loss_reconst_dec = self.criterionL1L(self.real_A, R_a.mul(I_a)) \
                            + self.criterionL1L(real_B, R_b.mul(I_b)) \
                            + 0.001 * self.criterionL1L(self.real_A, R_b.mul(I_a)) \
@@ -166,8 +155,6 @@ class OTSUNet(nn.Module):
         self.loss_dec.backward(retain_graph=True)
         self.netD_optim.step()
 
-
-
     def backward_E(self):
         self.netE_optim.zero_grad()
 
@@ -182,8 +169,6 @@ class OTSUNet(nn.Module):
         self.netE_optim.step()
 
     def backward_G(self):
-
-
         self.fake_sky = self.netG(self.feature_map.detach())
         output = self.netD_sky(self.fake_sky)
         self.loss_D_gan = self.criterionMSE(output,self.real_label_sky)
@@ -196,16 +181,12 @@ class OTSUNet(nn.Module):
             loss1 = self.criterionMSE(f_real_1,f_fake_1)
             loss2 = self.criterionMSE(f_real_2,f_fake_2)
 
-
         self.loss_vgg = loss1 + loss2
-
         self.loss_totall = self.loss_gan + self.loss_vgg + self.loss_D_gan
 
         self.netG_optim.zero_grad()
         self.loss_totall.backward()
         self.netG_optim.step()
-
-
 
     def optimize_parameters_separate(self):
         self.forward()
@@ -283,46 +264,3 @@ class OTSUNet(nn.Module):
         self.netG.load_state_dict(torch.load(model_file_netG, map_location=map2device))
 
         print('model parameters loaded successfully')
-
-    @staticmethod
-    def __print_model_desc(model):
-        print('[Model {name} generator architecture]'.format(name=model.name))
-        for idx, m in enumerate(model.modules()):
-            print(idx, '->', m)
-
-    @staticmethod
-    def __get_model_params_num(model):
-        get_params = lambda p: p.numel()
-        model_params = model.parameters()
-        model_params_num = sum(map(get_params, model_params))
-        return model_params_num
-
-    def print_model_desription(self):
-        netD_params_num = OTSUNet.__get_model_params_num(self.netD)
-        netE_params_num = OTSUNet.__get_model_params_num(self.netE)
-        netG_params_num = OTSUNet.__get_model_params_num(self.netG)
-        netDt_params_num = OTSUNet.__get_model_params_num(self.netDt)
-        netLte_params_num = OTSUNet.__get_model_params_num(self.netLte)
-        netLte_copy_params_num = OTSUNet.__get_model_params_num(self.netLte_copy)
-        netSt_params_num = OTSUNet.__get_model_params_num(self.netSt)
-
-
-        total_params_num = sum([netD_params_num, netE_params_num,netG_params_num,netDt_params_num,
-                                netLte_params_num,netLte_copy_params_num,netSt_params_num])
-
-        print('[Model {} params num: {}]'.format(self.netD.name, netD_params_num))
-        print('[Model {} params num: {}]'.format(self.netE.name, netE_params_num))
-        print('[Model {} params num: {}]'.format(self.netG.name, netG_params_num))
-        print('[Model {} params num: {}]'.format(self.netDt.name, netDt_params_num))
-        print('[Model {} params num: {}]'.format(self.netLte.name, netLte_params_num))
-        print('[Model {} params num: {}]'.format(self.netLte_copy.name, netLte_copy_params_num))
-        print('[Model {} params num: {}]'.format(self.netSt.name, netSt_params_num))
-
-        print('[Total CycleGAN params: {}]'.format(total_params_num))
-        OTSUNet.__print_model_desc(self.netD)
-        OTSUNet.__print_model_desc(self.netE)
-        OTSUNet.__print_model_desc(self.netG)
-        OTSUNet.__print_model_desc(self.netDt)
-        OTSUNet.__print_model_desc(self.netLte)
-        OTSUNet.__print_model_desc(self.netLte_copy)
-        OTSUNet.__print_model_desc(self.netSt)
