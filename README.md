@@ -1,8 +1,9 @@
 # Sky-Segmentation
-This repository  contains the nine hundred sky segmentation datasets and the sky segmentation model provided by us.
-
+This repository  contains the nine hundred sky segmentation datasets and the sky segmentation model provided by us. <br>
+<br>
+* Sky segmentation model structure diagram<br>
 ![image](https://github.com/ChengChen-ai/Sky-Segmentation/blob/main/data/MAG/%E5%9B%BE%E7%89%871.png)  
-* Sky segmentation model structure diagram
+
 
 ## Environment
 * Python 3.6 <br>
@@ -16,4 +17,8 @@ key：CcSs
 
 ## Train
 
+
 ## Test
+
+## Acknowledgments
+Code is inspired by Retinex and CycleGAN.
