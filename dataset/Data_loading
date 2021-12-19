@@ -1,1 +1,2 @@
-
+image_folder.py and pairs_dataset.py load files for training data  
+image_folder_test.py and pairs_dataset_test.py load files for testing data
