@@ -10,3 +10,7 @@ This repository  contains the nine hundred sky segmentation datasets and the sky
 ## Datasets
 Baidu network disk：https://pan.baidu.com/s/1p2hlvfoi4FXi74Ar2qPfhA 
 key：CcSs
+
+## Train
+
+## Test
