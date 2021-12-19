@@ -18,9 +18,10 @@ Extraction code：CcSs
 The downloaded training data is placed in the following file  
 >data
 >>images  
->>labels  
+>>labels
+
 Train SSMNet<br>
-                    python ./train.py
+    python ./train.py
 
 
 ## Testing
@@ -28,8 +29,9 @@ The testing data is placed in the following file
 >data
 >>test
 >>>images  
+
 Test SSMNet<br>
-                    python ./test.py
+    python ./test.py
 
 ## Acknowledgments
 Code is inspired by Retinex and CycleGAN.
