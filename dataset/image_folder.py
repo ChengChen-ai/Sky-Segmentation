@@ -24,12 +24,9 @@ def make_dataset(dir):
         for fname in fnames:
             if is_image_file(fname):
                 path = os.path.join(root, fname)
-                # temp = (path,path.replace("A", "B").replace("jpg", "png"))
-                # path_all.append(temp)
                 image_paths_A.append(path)
-                image_paths_B.append(path.replace("A", "B").replace("jpg", "png"))
+                image_paths_B.append(path.replace("images", "labels").replace("jpg", "png"))
 
-    # image_paths = sorted(image_paths_A)
     return image_paths_A, image_paths_B
 
 
