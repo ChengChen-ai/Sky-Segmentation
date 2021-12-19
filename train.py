@@ -103,8 +103,8 @@ def train():
             logger.log(OrderedDict(
                 [('lossTotal', errors[0]),('loss_dec', errors[1]),('loss_enh', errors[2])
                     ,('loss_G', errors[3]), ('loss_D', errors[4]),('loss_V',errors[5])]),
-                images = {'real_A' : images[0+length], 'R_a' : images[1+length], 'real_B' : images[2+length],
-                          'R_b' : images[3+length], 'feature_map' : images[4+length], 'fake_sky' : images[5+length],
+                images = {'real_A' : images[0*batch_size +length], 'R_a' : images[1*batch_size+length], 'real_B' : images[2*batch_size+length],
+                          'R_b' : images[3*batch_size+length], 'feature_map' : images[4*batch_size*batch_size+length], 'fake_sky' : images[5*batch_size+length],
                           }
             )
 
