@@ -16,7 +16,10 @@ Baidu network disk：https://pan.baidu.com/s/1p2hlvfoi4FXi74Ar2qPfhA
 key：CcSs
 
 ## Train
-
+The downloaded training data is placed in the following file  
+>data
+>>images
+>>labels
 
 ## Test
 
