@@ -4,7 +4,7 @@ import torch
 
 import torchvision.utils as vutils
 
-from Models.model import OTSUNet
+from Models.model import SSMNet
 from dataset.pairs_dataset_test import UnalignedDataLoader
 
 parser = argparse.ArgumentParser('OTSUNet models test')
@@ -49,7 +49,7 @@ def test():
     if not os.path.exists(test_dir):
         os.makedirs(test_dir)
 
-    model = OTSUNet(args, use_gpu)
+    model = SSMNet(args, use_gpu)
     model.load_parameters(args.load_epoch)
     # model.print_model_desription()
 
