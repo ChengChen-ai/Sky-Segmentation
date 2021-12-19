@@ -21,7 +21,7 @@ The downloaded training data is placed in the following file
 >>images  
 >>labels
 <br>
-```Python
+```python
 python ./train.py
 ```
 
