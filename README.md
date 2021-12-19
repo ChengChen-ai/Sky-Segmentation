@@ -21,8 +21,10 @@ The downloaded training data is placed in the following file
 >>images  
 >>labels
 <br>
-```c  
-python ./train.py
+```
+function test() {
+  console.log("notice the blank line before this function?");
+}
 ```
 
 
