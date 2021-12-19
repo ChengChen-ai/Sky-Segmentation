@@ -20,8 +20,7 @@ The downloaded training data is placed in the following file
 >>images  
 >>labels
 
-* Train SSMNet  
-        python ./train.py
+                python ./train.py
 
 
 ## Testing
