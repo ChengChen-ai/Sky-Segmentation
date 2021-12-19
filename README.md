@@ -18,7 +18,7 @@ key：CcSs
 The downloaded training data is placed in the following file  
 >data
 >>images  
->>labels
+>>labels  
     python ./train.py
 
 
