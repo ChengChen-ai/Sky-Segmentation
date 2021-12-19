@@ -20,6 +20,11 @@ The downloaded training data is placed in the following file
 >data
 >>images  
 >>labels
+<br>
+```Python
+python ./train.py
+```
+
 
 ## Testing
 The testing data is placed in the following file  
