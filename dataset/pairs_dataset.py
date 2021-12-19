@@ -29,7 +29,7 @@ class UnalignedDataLoader(object):
                                  (0.5, 0.5, 0.5))
         ])
         dataset_A = torch.utils.data.DataLoader(
-            ImageFolder(root=params.data_root + '/' + 'A', transform=transform),
+            ImageFolder(root=params.data_root + '/' + 'images', transform=transform),
             num_workers=params.num_workers,
             batch_size=params.batch_size,
             shuffle=params.shuffle)
