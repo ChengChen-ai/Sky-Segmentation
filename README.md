@@ -15,14 +15,14 @@ This repository  contains the nine hundred sky segmentation datasets and the sky
 Baidu network disk：https://pan.baidu.com/s/1p2hlvfoi4FXi74Ar2qPfhA 
 key：CcSs
 
-## Train
+## Training
 The downloaded training data is placed in the following file  
 >data
 >>images  
 >>labels
 
-## Test
-The test data is placed in the following file  
+## Testing
+The testing data is placed in the following file  
 >data
 >>test
 >>>images
