@@ -21,7 +21,6 @@ def make_dataset(dir):
             if is_image_file(fname):
                 path = os.path.join(root, fname)
                 image_paths_A.append(path)
-    # image_paths = sorted(image_paths_A)
     return image_paths_A
 
 
