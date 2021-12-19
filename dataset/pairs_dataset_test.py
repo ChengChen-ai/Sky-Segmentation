@@ -35,7 +35,7 @@ class UnalignedDataLoader(object):
                                  (0.5, 0.5, 0.5))
         ])
         dataset_A = torch.utils.data.DataLoader(
-            ImageFolder(root=params.data_root + '/' + 'A', transform=transform),
+            ImageFolder(root=params.data_root + '/' + 'images', transform=transform),
             num_workers=params.num_workers,
             shuffle=params.shuffle)
 
@@ -48,26 +48,3 @@ class UnalignedDataLoader(object):
 
     def __len__(self):
         return len(self.dataset_A)
-
-
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--data_root', default='../data', type=str)
-    parser.add_argument('--width', default=512, type=int)
-    parser.add_argument('--height', default=512, type=int)
-    parser.add_argument('--load_size', default=142, type=int)
-    parser.add_argument('--num_workers', default=2, type=int)
-    parser.add_argument('--shuffle', action='store_true')
-    parser.add_argument('--phase', default='train', type=str)
-    params = parser.parse_args()
-
-    unalignedDataLoader = UnalignedDataLoader(params)
-    dataset = unalignedDataLoader.load_data()
-    for _, u in enumerate(dataset):
-        img_A = torchvision.utils.make_grid(u['B']).numpy()
-        fig, axes = plt.subplots(nrows=1,ncols=2,figsize=(13,7))
-        axes[0].imshow(np.transpose(img_A, (1, 2, 0)))
-        plt.show()
-
-
