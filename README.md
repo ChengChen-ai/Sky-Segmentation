@@ -20,8 +20,6 @@ The downloaded training data is placed in the following file
 >>images  
 >>labels
 
-* Test SSMNet  
-
     python ./train.py
 
 
@@ -31,8 +29,7 @@ The testing data is placed in the following file
 >>test
 >>>images  
 
-* Test SSMNet  
-        python ./test.py
+    python ./test.py
 
 ## Acknowledgments
 Code is inspired by Retinex and CycleGAN.
