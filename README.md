@@ -1,6 +1,8 @@
 # Sky-Segmentation
 This repository  contains the nine hundred sky segmentation datasets and the sky segmentation model provided by us.
 
+![image]
+
 ## Environment
 * Python 3.6 <br>
 * PyTorch 1.8.0 <br>
