@@ -13,7 +13,7 @@ import random
 import torchvision.utils as vutils
 
 from visdom import Visdom
-from Models.model import OTSUNet
+from Models.model import SSMNet
 from dataset.pairs_dataset import UnalignedDataLoader
 from util.logger import Logger
 from collections import OrderedDict
@@ -84,7 +84,7 @@ logger = Logger(args.epochs, len(data_loader))
 def train():
     use_gpu = torch.cuda.is_available()
 
-    model = OTSUNet(params=args, use_gpu=use_gpu)
+    model = SSMNet(params=args, use_gpu=use_gpu)
     model.train()
 
     if args.continue_epoch > -1:
