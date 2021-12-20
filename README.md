@@ -12,7 +12,8 @@ This repository  contains the nine hundred sky segmentation datasets and the sky
 
 ## Datasets
 Baidu network disk：https://pan.baidu.com/s/1p2hlvfoi4FXi74Ar2qPfhA 
-Extraction code：CcSs
+Extraction code：CcSs  
+Note: the data contains paired training sets and pre-trained models
 
 ## Training
 The downloaded training data is placed in the following file  
@@ -24,12 +25,15 @@ The downloaded training data is placed in the following file
 
 
 ## Testing
+The pre-trained models are placed in folder results.  
 The testing data is placed in the following file  
 >data
 >>test
 >>>images  
 
-    python ./test.py
+    python ./test.py  
 
+* Test Results  
+![image](https://github.com/ChengChen-ai/Sky-Segmentation/blob/main/data/MAG/%E5%9B%BE%E7%89%871.png)  
 ## Acknowledgments
 Code is inspired by [Retinex](https://github.com/weichen582/RetinexNet) and [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix).
