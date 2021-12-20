@@ -32,4 +32,4 @@ The testing data is placed in the following file
     python ./test.py
 
 ## Acknowledgments
-Code is inspired by Retinex and CycleGAN.
+Code is inspired by [Retinex](https://github.com/weichen582/RetinexNet) and [CycleGAN](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix).
